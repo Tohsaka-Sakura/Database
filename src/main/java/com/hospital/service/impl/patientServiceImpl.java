@@ -28,5 +28,10 @@ public class patientServiceImpl implements patientService {
         patientMapper.register(username,md5Password);
     }
 
+    @Override
+    public void updatePatientInfo(Patient patient) {
+        patientMapper.updatePatientInfo(patient);
+    }
+
 
 }

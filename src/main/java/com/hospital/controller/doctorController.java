@@ -2,6 +2,7 @@ package com.hospital.controller;
 
 
 import com.hospital.pojo.Doctor;
+import com.hospital.pojo.Patient;
 import com.hospital.pojo.Result;
 import com.hospital.service.doctorService;
 import com.hospital.utils.JwtUtil;
@@ -9,9 +10,7 @@ import com.hospital.utils.Md5Util;
 import jakarta.validation.constraints.Pattern;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -60,5 +59,32 @@ public class doctorController {
         return Result.error("username or password error");
     }
 
+    @GetMapping("/doctorInfo")
+    public Result<Doctor> doctorInfo(@RequestHeader(name = "Authorization") String token) {
+        try {
+            Map<String, Object> claims = JwtUtil.verifyToken(token);
+            String username = (String) claims.get("username");
+            Doctor doctor = service.findDoctorByUsername(username);
+            if (doctor != null) {
+                return Result.success(doctor);
+                //return Result.error(patient.getUsername());
+            } else {
+                //return Result.error(username);
+                return Result.error("Doctor not found: user "+username);
+            }
+        } catch (Exception e) {
+            return Result.error("Invalid token");
+        }
+    }
+
+    @PutMapping("/update")
+    public Result updateDoctorInfo(@RequestBody Doctor doctor) {
+        try {
+            service.updateDoctorInfo(doctor);
+            return Result.success();
+        } catch (Exception e) {
+            return Result.error("Update failed");
+        }
+    }
 
 }

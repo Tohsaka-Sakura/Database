@@ -22,3 +22,14 @@ export const doctorLoginService = (loginData)=>{
     return request.post('/doctor/login',params)
 }
 
+export const getDoctorService = () => {
+    return request.get('/doctor/doctorInfo');
+};
+
+export const updateDoctorService = (userInfoData) => {
+    const params = new URLSearchParams();
+    for (let key in userInfoData) {
+        params.append(key, userInfoData[key]);
+    }
+    return request.put('/doctor/update', params);
+};

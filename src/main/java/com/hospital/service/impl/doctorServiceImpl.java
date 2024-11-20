@@ -2,6 +2,7 @@ package com.hospital.service.impl;
 
 import com.hospital.mapper.doctorMapper;
 import com.hospital.pojo.Doctor;
+import com.hospital.pojo.Patient;
 import com.hospital.service.doctorService;
 import com.hospital.utils.Md5Util;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,5 +28,10 @@ public class doctorServiceImpl implements doctorService {
         doctorMap.register(username,md5Pwd);
 
 
+    }
+
+    @Override
+    public void updateDoctorInfo(Doctor doctor) {
+        doctorMap.updateDoctorInfo(doctor);
     }
 }

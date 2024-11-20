@@ -16,8 +16,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/patient")
 @Validated
+@RequestMapping("/patient")
 public class patientController {
 
     @Autowired
@@ -64,17 +64,31 @@ public class patientController {
     }
 
     @GetMapping("/patientInfo")
-    public Result<Patient> PatientIfno(@RequestHeader(name = "Patient") String token){
-
-
-
-        return Result.success();
-
+    public Result<Patient> patientInfo(@RequestHeader(name = "Authorization") String token) {
+        try {
+            Map<String, Object> claims = JwtUtil.verifyToken(token);
+            String username = (String) claims.get("username");
+            Patient patient = pService.findByUserName(username);
+            if (patient != null) {
+                return Result.success(patient);
+                //return Result.error(patient.getUsername());
+            } else {
+                //return Result.error(username);
+                return Result.error("Patient not found: user "+username);
+            }
+        } catch (Exception e) {
+            return Result.error("Invalid token");
+        }
     }
 
-
-
-
-
+    @PutMapping("/update")
+    public Result updatePatientInfo(@RequestBody Patient patient) {
+        try {
+            pService.updatePatientInfo(patient);
+            return Result.success();
+        } catch (Exception e) {
+            return Result.error("Update failed");
+        }
+    }
 
 }
