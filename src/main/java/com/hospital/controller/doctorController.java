@@ -4,7 +4,9 @@ package com.hospital.controller;
 import com.hospital.pojo.Doctor;
 import com.hospital.pojo.Patient;
 import com.hospital.pojo.Result;
+import com.hospital.pojo.Record;
 import com.hospital.service.doctorService;
+import com.hospital.service.recordService;
 import com.hospital.utils.JwtUtil;
 import com.hospital.utils.Md5Util;
 import jakarta.validation.constraints.Pattern;
@@ -22,6 +24,9 @@ public class doctorController {
 
     @Autowired
     private doctorService service;
+
+    @Autowired
+    private recordService medicalRecordService;
 
     @PostMapping("/register")
     public Result register(@Pattern(regexp = "^\\S{5,16}")String username,
@@ -96,6 +101,16 @@ public class doctorController {
             return Result.success();
         } catch (Exception e) {
             return Result.error("Update failed");
+        }
+    }
+
+    @PostMapping("/addMedicalRecord")
+    public Result addMedicalRecord(@RequestBody Record medicalRecord) {
+        try {
+            medicalRecordService.addMedicalRecord(medicalRecord);
+            return Result.success();
+        } catch (Exception e) {
+            return Result.error("添加病历失败");
         }
     }
 
