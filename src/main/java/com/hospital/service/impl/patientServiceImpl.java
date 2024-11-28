@@ -13,11 +13,11 @@ public class patientServiceImpl implements patientService {
 
 
     @Autowired
-    private patientMapper patientMapper;
+    private patientMapper patientMap;
 
     @Override
     public Patient findByUserName(String username) {
-        return patientMapper.findByUserName(username);
+        return patientMap.findByUserName(username);
     }
 
     @Override
@@ -25,12 +25,12 @@ public class patientServiceImpl implements patientService {
 
         String md5Password = Md5Util.getMD5String(password);
 
-        patientMapper.register(username,md5Password);
+        patientMap.register(username,md5Password);
     }
 
     @Override
     public void updatePatientInfo(Patient patient) {
-        patientMapper.updatePatientInfo(patient);
+        patientMap.updatePatientInfo(patient);
     }
 
 
