@@ -2,6 +2,7 @@ package com.hospital.service.impl;
 
 import com.hospital.mapper.adminMapper;
 import com.hospital.pojo.Admin;
+import com.hospital.pojo.Record;
 import com.hospital.service.adminService;
 import com.hospital.utils.Md5Util;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,6 @@ public class adminServiceImpl implements adminService {
         String md5Pwd = Md5Util.getMD5String(password);
 
         adminMap.register(username,md5Pwd);
-
 
     }
 }

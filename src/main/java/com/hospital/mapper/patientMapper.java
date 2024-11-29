@@ -2,6 +2,7 @@ package com.hospital.mapper;
 
 
 import com.hospital.pojo.Patient;
+import com.hospital.pojo.Record;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -15,12 +16,14 @@ public interface patientMapper {
     Patient findByUserName(String username);
 
 
-    @Insert("insert into patient(username,password,create_time,update_time)" +
-    " values(#{username}, #{password}, now(), now())")
+    @Insert("insert into patient(username,password)" +
+    " values(#{username}, #{password})")
     void register(String username, String password);
 
-    @Update("UPDATE patient SET name = #{name}, gender = #{gender}, contact_number = #{contactNumber}, update_time = now() WHERE id = #{id}")
+    @Update("UPDATE patient SET name = #{name}, gender = #{gender}, contact_number = #{contactNumber}, update_time = now() WHERE username = #{username}")
     void updatePatientInfo(Patient patient);
 
+    @Select("select * from record where patientID =#{username}")
+    Record findRecord(String username);
 
 }
