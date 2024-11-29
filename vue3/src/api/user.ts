@@ -23,6 +23,11 @@ export const userInfoService = () => {
     return request.get('/patient/patientInfo');
 };
 
+// 获取用户病历
+export const patientRecordService = () => {
+    return request.get('/patient/record'); // 
+};
+
 // 修改个人信息
 export const userInfoUpdateService = (userInfoData) => {
     const params = new URLSearchParams();

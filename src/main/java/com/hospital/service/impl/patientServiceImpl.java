@@ -2,6 +2,7 @@ package com.hospital.service.impl;
 
 import com.hospital.mapper.patientMapper;
 import com.hospital.pojo.Patient;
+import com.hospital.pojo.Record;
 import com.hospital.service.patientService;
 import com.hospital.utils.Md5Util;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,5 +34,8 @@ public class patientServiceImpl implements patientService {
         patientMap.updatePatientInfo(patient);
     }
 
+    public Record findRecordByUsername(String username){
+        return patientMap.findRecord(username);
+    }
 
 }

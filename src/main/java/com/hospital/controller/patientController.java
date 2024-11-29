@@ -2,8 +2,10 @@ package com.hospital.controller;
 
 
 import com.hospital.pojo.Result;
+import com.hospital.pojo.Record;
 import com.hospital.pojo.Patient;
 import com.hospital.service.patientService;
+import com.hospital.service.recordService;
 import com.hospital.utils.JwtUtil;
 import com.hospital.utils.Md5Util;
 import jakarta.validation.constraints.Pattern;
@@ -22,6 +24,9 @@ public class patientController {
 
     @Autowired
     private patientService pService;
+
+    @Autowired
+    private recordService rService;
 
     @Autowired
     private StringRedisTemplate redisTemplate;
@@ -75,6 +80,24 @@ public class patientController {
             } else {
                 //return Result.error(username);
                 return Result.error("Patient not found: user "+username);
+            }
+        } catch (Exception e) {
+            return Result.error("Invalid token");
+        }
+    }
+
+    @GetMapping("/record")
+    public Result<Record> patientRecord(@RequestHeader(name = "Authorization") String token) {
+        try {
+            Map<String, Object> claims = JwtUtil.verifyToken(token);
+            String username = (String) claims.get("username");
+            Record record = pService.findRecordByUsername(username);
+            if (record != null) {
+                return Result.success(record);
+                //return Result.error(patient.getUsername());
+            } else {
+                //return Result.error(username);
+                return Result.error("Record not found: user "+username);
             }
         } catch (Exception e) {
             return Result.error("Invalid token");

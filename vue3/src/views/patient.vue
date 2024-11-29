@@ -2,19 +2,20 @@
     <div class="patient-info-container">
       <h2>User Information</h2>
       <div class="info-box">
-        <p>Name: {{ patient.name }}</p>
-        <p>Gender: {{ patient.gender }}</p>
-        <p>Username: {{ patient.username }}</p>
-        <p>PhoneNumber: {{ patient.contactNumber }}</p>
+        <p>姓名: {{ patient.name }}</p>
+        <p>性别: {{ patient.gender }}</p>
+        <p>用户名: {{ patient.username }}</p>
+        <p>电话号码: {{ patient.contactNumber }}</p>
       </div>
       <button @click="editInfo">修改信息</button>
+      <button @click="viewRecord">查看病历</button>
     </div>
   </template>
   
   <script setup>
   import { ref, onMounted } from 'vue';
   import { useRouter } from 'vue-router';
-  import { userInfoService } from '@/api/user.ts'; // 假设服务文件路径
+  import { userInfoService, patientRecordService } from '@/api/user.ts'; // 假设服务文件路径
   
   const patient = ref({
     id: null,
@@ -25,6 +26,13 @@
     creatTime: null,
     updateTime: null
   });
+
+  const record = ref({
+    patientId: '',
+    time: null,
+    department: '',
+    notes: '',
+  });
   
   const router = useRouter();
   
@@ -34,6 +42,16 @@
       patient.value = response.data.data;
     } catch (error) {
       console.error('Error fetching patient info:', error);
+    }
+  };
+
+  const viewRecord = async () => {
+    try {
+      const response = await patientRecordService(patient.value.username); // 传递用户名以获取病历
+      record.value = response.data.data;
+      router.push({ name: 'patient-record', params: { record: record.value } }); // 跳转到病历页面，并传递病历数据
+    } catch (error) {
+      console.error('Error fetching patient record:', error);
     }
   };
   
