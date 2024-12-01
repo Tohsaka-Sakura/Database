@@ -23,8 +23,6 @@
     gender: '',
     username: '',
     contactNumber: '',
-    creatTime: null,
-    updateTime: null
   });
 
   const record = ref({

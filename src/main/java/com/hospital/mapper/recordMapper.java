@@ -12,7 +12,7 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface recordMapper {
 
-    @Insert("INSERT INTO medical_records(patient_id, time, department, notes, create_time) " +
-            "VALUES(#{patientId}, #{time}, #{department}, #{notes}, now())")
+    @Insert("INSERT INTO record(patientId, time, department, notes) " +
+            "VALUES(#{patientId}, #{time}, #{department}, #{notes})")
     void addMedicalRecord(Record medicalRecord);
 }

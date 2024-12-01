@@ -17,7 +17,7 @@ public interface patientMapper {
 
 
     @Insert("insert into patient(username,password)" +
-    " values(#{username}, #{password})")
+            " values(#{username}, #{password})")
     void register(String username, String password);
 
     @Update("UPDATE patient SET name = #{name}, gender = #{gender}, contact_number = #{contactNumber}, update_time = now() WHERE username = #{username}")

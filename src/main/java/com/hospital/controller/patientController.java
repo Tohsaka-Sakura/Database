@@ -37,12 +37,11 @@ public class patientController {
         Patient u = pService.findByUserName(username);
 
         if(u == null){
-
             pService.register(username,password);
             return Result.success();
         }
         else{
-            return Result.error("useless username");
+            return Result.error("invalid username");
         }
     }
 

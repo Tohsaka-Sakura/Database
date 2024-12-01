@@ -16,7 +16,4 @@ public class Patient {
 
     private String contactNumber;
 
-    private LocalDateTime creatTime;
-    private LocalDateTime updateTime;
-
 }
