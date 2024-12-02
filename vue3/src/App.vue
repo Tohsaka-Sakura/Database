@@ -2,7 +2,7 @@
 
 <script setup>
   import LoginView from '@/views/Login.vue'
-  import LayoutView from '@/views/layout.vue'; 
+  import LayoutView from '@/views/DoctorLayout.vue'; 
   
 
 </script>

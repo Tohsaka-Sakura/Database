@@ -1,5 +1,6 @@
 //定义store
 import {defineStore} from 'pinia'
+import piniaPersistedstate from 'pinia-plugin-persistedstate';
 import {ref} from 'vue'
 /* 
     第一个参数:名字,唯一性
@@ -26,4 +27,6 @@ export const useTokenStore = defineStore('token',()=>{
     return {
         token,setToken,removeToken
     }
+},{
+    persist:true//持久化存储
 });

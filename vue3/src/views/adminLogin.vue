@@ -56,7 +56,7 @@ const register = async() =>{
 
 const router = useRouter()
 
-import {useTokenStore} from '@/stores/token.ts'
+import {useTokenStore} from '@/stores/token'
 
 const tokenStore = useTokenStore()
 

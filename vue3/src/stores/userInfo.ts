@@ -1,4 +1,5 @@
 import {defineStore} from 'pinia'
+import piniaPersistedstate from 'pinia-plugin-persistedstate';
 import {ref} from 'vue'
 const useUserInfoStore = defineStore('userInfo',()=>{
     //定义状态相关的内容
