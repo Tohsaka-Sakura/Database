@@ -12,6 +12,7 @@ import patientView from '@/views/patient.vue'
 
 import doctorView from '@/views/doctor.vue'
 import doctorUpdateView from '@/views/updateDoctor.vue'
+import doctorEditView from '@/views/editDoctor.vue'
 
 import component from 'element-plus/es/components/tree-select/src/tree-select-option.mjs'
 import Layout from '@/views/layout.vue'

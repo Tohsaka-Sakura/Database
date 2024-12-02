@@ -36,3 +36,13 @@ export const updateDoctorService = (userInfoData) => {
 export const addMedicalRecordService = (recordData) => {
     return request.post('/doctor/addMedicalRecord', recordData);
 };
+
+// 添加护士
+export const addNurseService = (nurseData) => {
+    return request.post('/doctor/addNurse', nurseData);
+};
+
+// 添加科室
+export const addRoomService = (roomData) => {
+    return request.post('/doctor/addRoom', roomData);
+};
