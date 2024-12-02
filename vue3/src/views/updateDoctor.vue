@@ -25,11 +25,8 @@
       <button type="submit" class="submit-button">保存</button>
       <button type="button" class="cancel-button" @click="cancelEdit">取消</button>
     </form>
-
-    <button type="button" class="add-record-button" @click="showRecordModal = true">添加病历</button>
-    
     <!-- 新增的按钮，用于跳转到 editDoctor 视图 -->
-    <button type="button" class="edit-doctor-button" @click="goToEditDoctor">编辑医生</button>
+    <button type="button" class="edit-doctor-button" @click="goToEditDoctor">管理信息</button>
   </div>
 </template>
 
@@ -75,9 +72,9 @@ const cancelEdit = () => {
   router.push('/doctor');
 };
 
-// 跳转到 editDoctor 视图的函数
+
 const goToEditDoctor = () => {
-  router.push('/add-info'); 
+  router.push('/doctor/add-info'); 
 };
 
 fetchDoctorInfo();

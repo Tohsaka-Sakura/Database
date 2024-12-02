@@ -27,6 +27,7 @@ const route = [
     { path: '/patient/edit-patient-info', component: updateView },
     { path: '/doctor/Info',component: doctorView},
     { path: '/doctor/edit-doctor-info',component: doctorUpdateView},
+    { path: '/doctor/add-info',component: doctorEditView},
     { path: '/doctor/home', component: Layout}
 ]
 
