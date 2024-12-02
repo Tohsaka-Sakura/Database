@@ -23,3 +23,8 @@ CREATE TABLE IF NOT EXISTS Record (
         FOREIGN KEY (DoctorID) REFERENCES Doctors(DoctorID),
         FOREIGN KEY (NurseID) REFERENCES Nurses(NurseID)
 )
+
+CREATE TABLE IF NOT EXISTS doctorrequireregister (
+        username VARCHAR(50),
+        password VARCHAR(50),
+);

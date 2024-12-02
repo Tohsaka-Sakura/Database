@@ -7,6 +7,8 @@ import LayoutView from '@/views/layout.vue'
 import doctorLoginView from '@/views/doctorLogin.vue'
 import adminLoginView from '@/views/adminLogin.vue'
 
+import adminView from '@/views/admin.vue'
+
 import updateView from '@/views/update.vue'
 import patientView from '@/views/patient.vue'
 
@@ -28,7 +30,8 @@ const route = [
     { path: '/doctor/Info',component: doctorView},
     { path: '/doctor/edit-doctor-info',component: doctorUpdateView},
     { path: '/doctor/add-info',component: doctorEditView},
-    { path: '/doctor/home', component: Layout}
+    { path: '/doctor/home', component: Layout},
+    { path: '/admin/request', component: adminView},
 ]
 
 const router = createRouter({
