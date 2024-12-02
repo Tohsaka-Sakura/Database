@@ -1,0 +1,7 @@
+CREATE TABLE `Record` (
+    `patientId` VARCHAR(255) NOT NULL,
+    `time` DATETIME NOT NULL,
+    `department` VARCHAR(255),
+    `notes` TEXT,
+    PRIMARY KEY (`patientId`, `time`)
+);
