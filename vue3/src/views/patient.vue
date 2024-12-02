@@ -3,12 +3,11 @@
     <h2>User Information</h2>
     <div class="info-box">
       <p>姓名: {{ patient.name }}</p>
-      <p>性别: {{ patient.gender }}</p>
+      <p>编号: {{ patient.id }}</p>
       <p>用户名: {{ patient.username }}</p>
       <p>电话号码: {{ patient.contactNumber }}</p>
     </div>
     <button @click="editInfo">修改信息</button>
-    <div v-if="record">
       <h3>病历信息</h3>
       <div class="info-box">
         <p>病人ID: {{ record.PId }}</p>
@@ -17,7 +16,6 @@
         <p>科室: {{ record.department }}</p>
         <p>备注: {{ record.notes }}</p>
       </div>
-    </div>
   </div>
 </template>
 
@@ -34,15 +32,15 @@ const patient = ref({
   contactNumber: '',
 });
 
-const record = ref({ PId: null, NId: null, DId: null, department: '', notes: '' });
+const record = ref({ PId: '', NId:'', DId: '', department: '', notes: '' });
 
 const router = useRouter();
 
 const fetchPatientInfo = async () => {
   try {
-    const response = await userInfoService();
-    patient.value = response.data.data;
-    await fetchPatientRecord(); // 在获取患者信息后立即获取病历
+    const response = await userInfoService(patient.value.id);
+    patient.value = response.data;
+    await fetchPatientRecord(patient.value.id); // 在获取患者信息后立即获取病历
   } catch (error) {
     console.error('Error fetching patient info:', error);
   }
@@ -50,8 +48,8 @@ const fetchPatientInfo = async () => {
 
 const fetchPatientRecord = async () => {
   try {
-    const response = await patientRecordService(patient.value.username);
-    record.value = response.data.data;
+    const response = await patientRecordService(patient.value.id);
+    record.value = response.data;
   } catch (error) {
     console.error('Error fetching patient record:', error);
   }
