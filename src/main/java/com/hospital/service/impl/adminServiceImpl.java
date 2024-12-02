@@ -2,10 +2,13 @@ package com.hospital.service.impl;
 
 import com.hospital.mapper.adminMapper;
 import com.hospital.pojo.Admin;
+import com.hospital.pojo.doctorrequestregister;
 import com.hospital.service.adminService;
 import com.hospital.utils.Md5Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 
 @Service
@@ -17,6 +20,26 @@ public class adminServiceImpl implements adminService {
     @Override
     public Admin findAdminByUsername(String username) {
         return adminMap.findAdminByUsername(username);
+    }
+
+    @Override
+    public List<doctorrequestregister> getRegister() {
+        return adminMap.getAllDoctorRegister();
+    }
+
+    @Override
+    public doctorrequestregister getDoctorRegister(String username) {
+        return adminMap.findRequestByUsername(username);
+    }
+
+    @Override
+    public void deleteDoctorRegister(String username) {
+        adminMap.deleteRequire(username);
+    }
+
+    @Override
+    public void updateDoctorRegister(doctorrequestregister doctorregister) {
+        adminMap.allowRequire(doctorregister.getUsername(),doctorregister.getPassword());
     }
 
     @Override

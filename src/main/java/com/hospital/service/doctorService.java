@@ -9,6 +9,8 @@ public interface doctorService {
 
     Doctor findDoctorByUsername(String username);
 
+    Doctor findDoctorRegisterByUsername(String username);
+
     void register(String username,String password);
 
     void updateDoctorInfo(Doctor doctor);

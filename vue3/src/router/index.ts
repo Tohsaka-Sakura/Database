@@ -14,6 +14,7 @@ import doctorView from '@/views/doctor.vue'
 import doctorUpdateView from '@/views/updateDoctor.vue'
 
 import component from 'element-plus/es/components/tree-select/src/tree-select-option.mjs'
+import Layout from '@/views/layout.vue'
 
 
 const route = [
@@ -25,6 +26,7 @@ const route = [
     { path: '/patient/edit-patient-info', component: updateView },
     { path: '/doctor/Info',component: doctorView},
     { path: '/doctor/edit-doctor-info',component: doctorUpdateView},
+    { path: '/doctor/home', component: Layout}
 ]
 
 const router = createRouter({

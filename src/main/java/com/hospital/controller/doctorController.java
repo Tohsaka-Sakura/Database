@@ -29,8 +29,20 @@ public class doctorController {
     {
         Doctor doctor = service.findDoctorByUsername(username);
         if(doctor == null){
-            service.register(username, password);
-            return Result.success();
+
+
+            Doctor doctorRe = service.findDoctorRegisterByUsername(username);
+            if(doctorRe == null)
+            {
+                service.register(username, password);
+                return Result.success();
+
+            }
+            else
+            {
+                return Result.error("repeat register, please wait for admin to verify.");
+            }
+
         }
         else{
             return Result.error("useless username");

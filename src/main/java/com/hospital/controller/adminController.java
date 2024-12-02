@@ -3,15 +3,14 @@ package com.hospital.controller;
 
 import com.hospital.pojo.Admin;
 import com.hospital.pojo.Result;
+import com.hospital.pojo.doctorrequestregister;
 import com.hospital.service.adminService;
 import com.hospital.utils.JwtUtil;
 import com.hospital.utils.Md5Util;
 import jakarta.validation.constraints.Pattern;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -63,6 +62,32 @@ public class adminController {
         }
 
         return Result.error("username or password error");
+    }
+
+    @GetMapping("/check")
+    public Result checkRequest()
+    {
+        return Result.success(adminservice.getRegister());
+    }
+
+    @PutMapping("/verfiry")
+    public Result verifier(String username){
+        doctorrequestregister doctorrequestregister = new doctorrequestregister();
+        doctorrequestregister = adminservice.getDoctorRegister(username);
+        if(doctorrequestregister == null){
+            return Result.error("get doctor request register error");
+        }
+        else {
+            try {
+                adminservice.deleteDoctorRegister(username);
+                adminservice.updateDoctorRegister(doctorrequestregister);
+                return Result.success("register success");
+            }
+            catch (Exception e) {
+                return Result.error(e.getMessage());
+            }
+
+        }
     }
 
 

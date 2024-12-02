@@ -119,43 +119,43 @@ import avatar from '@/assets/default.png'
             </el-menu>
         </el-aside>
         <!-- 右侧主区域 -->
-        <el-container>
+        <el-container style="flex:1;display: flex; flex-direction: column; height: 100vh;">
             <!-- 头部区域 -->
             <el-header >
-                <div>黑马程序员：</div>
+                <div>Doctor:</div>
                 <!-- 下拉菜单 -->
                 <!-- command: 条目被点击后会触发,在事件函数上可以声明一个参数,接收条目对应的指令 -->
                 <el-dropdown placement="bottom-end" @command="handleCommand">
                     <span class="el-dropdown__box">
-                        <el-avatar  />
+                        <el-avatar :src = "avatar"  />
                         <el-icon>
                             <CaretBottom />
                         </el-icon>
                     </span>
                     <template #dropdown>
                         <el-dropdown-menu>
-                            <el-dropdown-item >基本资料</el-dropdown-item>
-                            <el-dropdown-item >更换头像</el-dropdown-item>
-                            <el-dropdown-item >重置密码</el-dropdown-item>
-                            <el-dropdown-item >退出登录</el-dropdown-item>
+                            <el-dropdown-item command = "profile":icon = "User">基本资料</el-dropdown-item>
+                            <el-dropdown-item command = "avatar":icon = "Crop">更换头像</el-dropdown-item>
+                            <el-dropdown-item command = "password":icon = "EditPen">重置密码</el-dropdown-item>
+                            <el-dropdown-item command = "logout":icon = "SwitchButton">退出登录</el-dropdown-item>
                         </el-dropdown-menu>
                     </template>
                 </el-dropdown>
             </el-header>
             <!-- 中间区域 -->
             <el-main >
-                <!-- <div style="width: 1290px; height: 570px;border: 1px solid red;">
+                <div style="width: 65vw; height: 95%;border: 1px solid red;">
                     内容展示区
-                </div> -->
+                </div>
                 <!-- <div>
                     test
                 </div> -->
-                <router-view>
+                <!-- <router-view>
 
-                </router-view>
+                </router-view> -->
             </el-main>
             <!-- 底部区域 -->
-            <el-footer>大事件 ©2023 Created by 黑马程序员</el-footer>
+            <el-footer>hospital ©2024</el-footer>
         </el-container>
     </el-container>
 </template>
@@ -163,7 +163,7 @@ import avatar from '@/assets/default.png'
 <style lang="scss" scoped>
 .layout-container {
     height: 100vh;
-
+    width: 90vw;
     .el-aside {
         background-color: #232323;
 

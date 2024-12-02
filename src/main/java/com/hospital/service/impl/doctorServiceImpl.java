@@ -21,6 +21,11 @@ public class doctorServiceImpl implements doctorService {
     }
 
     @Override
+    public Doctor findDoctorRegisterByUsername(String username) {
+        return doctorMap.findDoctorRegisterByUsername(username);
+    }
+
+    @Override
     public void register(String username, String password) {
 
         String md5Pwd = Md5Util.getMD5String(password);
