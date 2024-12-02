@@ -2,11 +2,14 @@ package com.hospital.controller;
 
 
 import com.hospital.pojo.Doctor;
-import com.hospital.pojo.Patient;
+import com.hospital.pojo.Nurse;
+import com.hospital.pojo.Room;
 import com.hospital.pojo.Result;
 import com.hospital.pojo.Record;
 import com.hospital.service.doctorService;
 import com.hospital.service.recordService;
+import com.hospital.service.nurseService;
+import com.hospital.service.roomService;
 import com.hospital.utils.JwtUtil;
 import com.hospital.utils.Md5Util;
 import jakarta.validation.constraints.Pattern;
@@ -27,6 +30,13 @@ public class doctorController {
 
     @Autowired
     private recordService medicalRecordService;
+
+    @Autowired
+    private nurseService nurseService;
+
+    @Autowired
+    private roomService roomService;
+
 
     @PostMapping("/register")
     public Result register(@Pattern(regexp = "^\\S{5,16}")String username,
@@ -104,9 +114,32 @@ public class doctorController {
         }
     }
 
+    @PostMapping("/addNurse")
+    public Result addNurse(@RequestBody Nurse nurse) {
+        try {
+            // 调用护士服务的方法添加护士
+            nurseService.addNurse(nurse);
+            return Result.success("护士添加成功");
+        } catch (Exception e) {
+            return Result.error("添加护士失败: " + e.getMessage());
+        }
+    }
+
+    @PostMapping("/addRoom")
+    public Result addRoom(@RequestBody Room room) {
+        try {
+            // 调用护士服务的方法添加护士
+            roomService.addRoom(room);
+            return Result.success("科室添加成功");
+        } catch (Exception e) {
+            return Result.error("科室护士失败: " + e.getMessage());
+        }
+    }
+
     @PostMapping("/addMedicalRecord")
     public Result addMedicalRecord(@RequestBody Record medicalRecord) {
         try {
+            // 在这里可以添加护士和科室的信息
             medicalRecordService.addMedicalRecord(medicalRecord);
             return Result.success();
         } catch (Exception e) {
