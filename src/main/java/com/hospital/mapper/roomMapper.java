@@ -12,6 +12,6 @@ import java.util.List;
 @Mapper
 public interface roomMapper {
 
-    @Insert("INSERT INTO Room (RoomID, Type) VALUES(#{id}, #{Type})")
+    @Insert("INSERT INTO Room (Type) VALUES(#{Type})")
     void addRoom(Room room);
 }

@@ -34,8 +34,8 @@ public class patientServiceImpl implements patientService {
         patientMap.updatePatientInfo(patient);
     }
 
-    public Record findRecordByUsername(String username){
-        return patientMap.findRecord(username);
+    public Record findRecordByUsername(Integer ID){
+        return patientMap.findRecord(ID);
     }
 
 }

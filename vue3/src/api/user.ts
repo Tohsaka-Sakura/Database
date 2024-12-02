@@ -30,11 +30,11 @@ export const patientRecordService = () => {
 
 // 修改个人信息
 export const userInfoUpdateService = (userInfoData) => {
-    const params = new URLSearchParams();
-    for (let key in userInfoData) {
-        params.append(key, userInfoData[key]);
-    }
-    return request.put('/patient/update', params);
+    return request.put('/patient/update', userInfoData, {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
 };
 
 // 修改头像
