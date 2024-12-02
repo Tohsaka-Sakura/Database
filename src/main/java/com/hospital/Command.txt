@@ -1,0 +1,30 @@
+
+CREATE TABLE IF NOT EXISTS Nurse (
+        NurseID INT AUTO_INCREMENT PRIMARY KEY,
+        Name VARCHAR(100),
+        Department VARCHAR(100),
+        AssignedRoom INT
+);
+
+CREATE TABLE IF NOT EXISTS Room (
+        RoomID INT AUTO_INCREMENT PRIMARY KEY,
+        Type VARCHAR(100),
+);
+
+CREATE TABLE IF NOT EXISTS Record (
+        RecordID INT AUTO_INCREMENT PRIMARY KEY,
+        PatientID INT,
+        DoctorID INT,
+        NurseID INT,
+        Department VARCHAR(50),
+        notes TEXT,
+        time DATETIME NOT NULL
+        FOREIGN KEY (PatientID) REFERENCES Patients(PatientID),
+        FOREIGN KEY (DoctorID) REFERENCES Doctors(DoctorID),
+        FOREIGN KEY (NurseID) REFERENCES Nurses(NurseID)
+)
+
+CREATE TABLE IF NOT EXISTS doctorrequireregister (
+        username VARCHAR(50),
+        password VARCHAR(50),
+);

@@ -7,11 +7,14 @@ import LayoutView from '@/views/DoctorLayout.vue'
 import doctorLoginView from '@/views/doctorLogin.vue'
 import adminLoginView from '@/views/adminLogin.vue'
 
+import adminView from '@/views/admin.vue'
+
 import updateView from '@/views/update.vue'
 import patientView from '@/views/patient.vue'
 
 import doctorView from '@/views/doctor.vue'
 import doctorUpdateView from '@/views/updateDoctor.vue'
+import doctorEditView from '@/views/editDoctor.vue'
 
 import component from 'element-plus/es/components/tree-select/src/tree-select-option.mjs'
 import Layout from '@/views/DoctorLayout.vue'
@@ -34,9 +37,10 @@ const route = [
         { path: '/doctor/record', component: ArticleCategory},
         { path: '/doctor/test', component: ArticleManage},
         { path: '/doctor/personinfo', component:UserInfo}
-    ]}
-    
-
+    ]},
+    { path: '/doctor/add-info',component: doctorEditView},
+    { path: '/doctor/home', component: Layout},
+    { path: '/admin/request', component: adminView}
 ]
 
 const router = createRouter({

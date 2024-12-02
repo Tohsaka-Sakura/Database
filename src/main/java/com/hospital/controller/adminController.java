@@ -70,6 +70,20 @@ public class adminController {
         return Result.success(adminservice.getRegister());
     }
 
+    @GetMapping("/reject")
+    public Result rejectRequest(@RequestParam String username) {
+        try {
+            doctorrequestregister doctorrequestregister = adminservice.getDoctorRegister(username);
+            if (doctorrequestregister == null) {
+                return Result.error("Doctor request not found");
+            }
+            adminservice.deleteDoctorRegister(username);
+            return Result.success("Request rejected successfully");
+        } catch (Exception e) {
+            return Result.error(e.getMessage());
+        }
+    }
+
     @PutMapping("/verfiry")
     public Result verifier(String username){
         doctorrequestregister doctorrequestregister = new doctorrequestregister();
