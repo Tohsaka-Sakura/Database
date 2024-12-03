@@ -110,9 +110,37 @@ const title = ref('')
 
 //删除分类
 import {ElMessageBox,ElMessage} from 'element-plus'
-import {rejectDoctorRequest} from '@/api/admin.ts'
+import {rejectDoctorRequest, approveDoctorRequest} from '@/api/admin.ts'
 
-const deleteCategory = (row) => {
+const allowRequire = (row) =>{
+    ElMessageBox.confirm(
+        'Do you want to accpet the register?',
+        'reminder',
+        {
+            confirmButtonText: 'yes',
+            cancelButtonText: 'No',
+            type:'warning',
+        }
+    )
+        .then(async() =>{
+            let result = await approveDoctorRequest(row.username);
+            ElMessage({
+                type:'success',
+                message:'accpet success',
+            })
+            doctorRequrieList();
+
+        })
+        .catch(() => {
+            ElMessage({
+                type: 'info',
+                message: 'user cancel accpet',
+            })
+        })
+}
+
+
+const rejectRequire = (row) => {
     //提示用户  确认框
 
     ElMessageBox.confirm(
@@ -136,7 +164,7 @@ const deleteCategory = (row) => {
         .catch(() => {
             ElMessage({
                 type: 'info',
-                message: '用户取消了删除',
+                message: 'user cancel delete',
             })
         })
 
@@ -174,8 +202,8 @@ const deleteCategory = (row) => {
             <!-- <el-table-column label="分类别名" prop="categoryAlias"></el-table-column> -->
             <el-table-column label="操作" width="100">
                 <template #default="{ row }">
-                    <el-button :icon="Edit" circle plain type="primary" @click="showDialog(row)"></el-button>
-                    <el-button :icon="Delete" circle plain type="danger" @click="deleteCategory(row)"></el-button>
+                    <el-button :icon="Edit" circle plain type="primary" @click="allowRequire(row)"></el-button>
+                    <el-button :icon="Delete" circle plain type="danger" @click="rejectRequire(row)"></el-button>
                 </template>
             </el-table-column>
             <template #empty>
