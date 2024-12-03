@@ -23,6 +23,12 @@ export const getDoctorService = () => {
     return request.get('/doctor/doctorInfo');
 };
 
+
+// 获取全部病历
+export const getDetailService = () => {
+    return request.get('/doctor/allRecord');
+};
+
 // 更新医生信息
 export const updateDoctorService = (userInfoData) => {
     return request.put('/doctor/update', JSON.stringify(userInfoData), {

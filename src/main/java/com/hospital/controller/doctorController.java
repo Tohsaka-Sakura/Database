@@ -1,13 +1,9 @@
 package com.hospital.controller;
 
 
-import com.hospital.pojo.Doctor;
-import com.hospital.pojo.Nurse;
-import com.hospital.pojo.Room;
-import com.hospital.pojo.Result;
+import com.hospital.pojo.*;
 import com.hospital.pojo.Record;
 import com.hospital.service.doctorService;
-import com.hospital.service.recordService;
 import com.hospital.service.nurseService;
 import com.hospital.service.roomService;
 import com.hospital.utils.JwtUtil;
@@ -29,8 +25,6 @@ public class doctorController {
     @Autowired
     private doctorService service;
 
-    @Autowired
-    private recordService medicalRecordService;
 
     @Autowired
     private nurseService nurseService;
@@ -141,16 +135,36 @@ public class doctorController {
     public Result addMedicalRecord(@RequestBody Record medicalRecord) {
         try {
             // 在这里可以添加护士和科室的信息
-            medicalRecordService.addMedicalRecord(medicalRecord);
+            service.addMedicalRecord(medicalRecord);
             return Result.success();
         } catch (Exception e) {
-            return Result.error("添加病历失败");
+            return Result.error(e.getMessage());
         }
     }
 
     @GetMapping("/allDoctorInfo")
     public Result allDoctorInfo() {
         return Result.success(service.getAllDoctor());
+    }
+
+
+    @GetMapping("/allRecord")
+    public Result<List<Detail>> allRecord(@RequestHeader("Authorization") String token) {
+        try {
+            Map<String, Object> claims = JwtUtil.verifyToken(token);
+            String username = (String) claims.get("username");
+            Doctor doctor = service.findDoctorByUsername(username);
+            if (doctor != null) {
+                List<Detail> details = service.getAllDetail(doctor.id);
+                return Result.success(details);
+                //return Result.error(doctor.id.toString());
+            } else {
+                //return Result.error(username);
+                return Result.error("Doctor not found: user "+username);
+            }
+        } catch (Exception e) {
+            return Result.error(e.getMessage());
+        }
     }
 
 }

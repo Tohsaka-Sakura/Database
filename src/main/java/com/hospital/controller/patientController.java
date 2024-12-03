@@ -1,11 +1,11 @@
 package com.hospital.controller;
 
 
+import com.hospital.pojo.PreviousRecord;
 import com.hospital.pojo.Result;
 import com.hospital.pojo.Record;
 import com.hospital.pojo.Patient;
 import com.hospital.service.patientService;
-import com.hospital.service.recordService;
 import com.hospital.utils.JwtUtil;
 import com.hospital.utils.Md5Util;
 import jakarta.validation.constraints.Pattern;
@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.List;
+
 
 @RestController
 @Validated
@@ -25,8 +27,6 @@ public class patientController {
     @Autowired
     private patientService pService;
 
-    @Autowired
-    private recordService rService;
 
     @Autowired
     private StringRedisTemplate redisTemplate;
@@ -86,20 +86,20 @@ public class patientController {
     }
 
     @GetMapping("/record")
-    public Result<Record> patientRecord(@RequestHeader(name = "Authorization") String token) {
+    public Result<List<Record>> patientRecord(@RequestHeader(name = "Authorization") String token) {
         try {
             Map<String, Object> claims = JwtUtil.verifyToken(token);
-            Integer id = (Integer) claims.get("id");
-            Record record = pService.findRecordByUsername(id);
+            String username = (String) claims.get("username");
+            List<Record> record = pService.findRecordByUsername(username);
             if (record != null) {
                 return Result.success(record);
                 //return Result.error(patient.getUsername());
             } else {
                 //return Result.error(username);
-                return Result.error("Record not found: user "+id);
+                return Result.error("Record not found: user "+username);
             }
         } catch (Exception e) {
-            return Result.error("Invalid token");
+            return Result.error(e.getMessage());
         }
     }
 
@@ -109,7 +109,17 @@ public class patientController {
             pService.updatePatientInfo(patient);
             return Result.success();
         } catch (Exception e) {
-            return Result.error("Update failed");
+            return Result.error(e.getMessage());
+        }
+    }
+
+    @PostMapping("/addPreviousRecord")
+    public Result addPrevious(@RequestBody PreviousRecord pre) {
+        try {
+            pService.addprevious(pre);
+            return Result.success();
+        } catch (Exception e) {
+            return Result.error(e.getMessage());
         }
     }
 

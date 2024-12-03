@@ -7,15 +7,15 @@ import lombok.Data;
 
 @Data
 public class Doctor {
-    private Integer id;
-    private String username;
-    private String name;
+    public Integer id;
+    public String username;
+    public String name;
     @JsonIgnore
     private String password;
 
-    private String phone;
-    private String department;
+    public String phone;
+    public String department;
 
     @Email
-    private String email;
+    public String email;
 }

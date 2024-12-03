@@ -8,6 +8,6 @@ import org.apache.ibatis.annotations.Mapper;
 public interface recordMapper {
 
     @Insert("INSERT INTO Record (PatientID, DoctorID, NurseID, Department, notes) " +
-            "VALUES (#{Pid}, #{Did}, #{Nid}, #{department}, #{notes})")
+            "VALUES (#{PatientID}, #{DoctorID}, #{NurseID}, #{department}, #{notes})")
     void addMedicalRecord(Record medicalRecord);
 }

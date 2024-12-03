@@ -15,17 +15,6 @@ import {userInfoService} from '@/api/user.ts'
 import useUserInfoStore from '@/stores/userInfo.ts'
 import {useTokenStore} from '@/stores/token.ts'
 const tokenStore = useTokenStore();
-const userInfoStore = useUserInfoStore();
-//调用函数,获取用户详细信息
-const getUserInfo = async()=>{
-    //调用接口
-    let result = await userInfoService();
-    //数据存储到pinia中
-    userInfoStore.setInfo(result.data);
-}
-
-getUserInfo();
-//条目被点击后,调用的函数
 
 import useDoctorIndoStore from '@/stores/doctorInfo'
 import { getDoctorService } from '@/api/doctor'

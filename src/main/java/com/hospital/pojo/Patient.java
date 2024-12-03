@@ -8,12 +8,12 @@ import java.time.LocalDateTime;
 @Data
 public class Patient {
 
-    private Integer id;
-    private String name;
-    private String gender;
-    private String username;
+    public Integer id;
+    public String name;
+    public String gender;
+    public String username;
     private String password;
 
-    private String contactNumber;
+    public String contactNumber;
 
 }

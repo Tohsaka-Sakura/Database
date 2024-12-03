@@ -20,11 +20,13 @@ import component from 'element-plus/es/components/tree-select/src/tree-select-op
 import Layout from '@/views/doctor/DoctorLayout.vue'
 import ArticleCategory from '@/views/article/ArticleCategory.vue'
 import ArticleManage from '@/views/article/ArticleManage.vue'
+import patientDetail from '@/views/article/patientDetail.vue'
 import DoctorInfo from '@/views/doctor/DoctorInfo.vue'
 import AdminLayout from '@/views/admin/AdminLayout.vue'
 import DoctorRequire from '@/views/admin/DoctorRequire.vue'
 import DoctorDepartment from '@/views/admin/DoctorDepartment.vue'
 import PatientLayout from '@/views/patient/PatientLayout.vue'
+import PatientInfo from '@/views/patient/PatientInfo.vue'
 //import Person from '@/views/person.vue'
 
 
@@ -49,7 +51,9 @@ const route = [
     ]},
     //patient::
     { path:'/patient/home',component:PatientLayout,children:[
-
+        { path: '/patient/record', component: patientDetail},
+        { path: '/patient/test', component: ArticleManage},
+        { path: '/patient/personinfo', component: PatientInfo}
     ]}
 
 

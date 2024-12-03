@@ -147,7 +147,7 @@ const handleCommand = (command)=>{
         <el-container style="flex:1;display: flex; flex-direction: column; height: 100vh;">
             <!-- 头部区域 -->
             <el-header >
-                <div>Doctor:<strong>{{ PatientinfoStore.info.username }}</strong></div>
+                <div>Doctor:</div>
                 <!-- 下拉菜单 -->
                 <!-- command: 条目被点击后会触发,在事件函数上可以声明一个参数,接收条目对应的指令 -->
                 <el-dropdown placement="bottom-end" @command="handleCommand">

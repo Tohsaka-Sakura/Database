@@ -8,3 +8,4 @@ export const patientInfoListService = ()=>{
 export const patientInfoService = () => {
     return request.get('/patient/patientInfo');
 };
+
