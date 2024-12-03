@@ -46,3 +46,7 @@ export const addNurseService = (nurseData) => {
 export const addRoomService = (roomData) => {
     return request.post('/doctor/addRoom', roomData);
 };
+
+export const getAllDoctorService = () =>{
+    return request.get('/doctor/allDoctorInfo');
+}

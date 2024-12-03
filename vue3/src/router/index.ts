@@ -2,9 +2,9 @@ import {createRouter, createWebHistory} from 'vue-router'
 
 
 import LoginView from '@/views/Login.vue'
-import LayoutView from '@/views/DoctorLayout.vue'
+import LayoutView from '@/views/doctor/DoctorLayout.vue'
 
-import doctorLoginView from '@/views/doctorLogin.vue'
+import doctorLoginView from '@/views/doctor/doctorLogin.vue'
 import adminLoginView from '@/views/admin/adminLogin.vue'
 
 import adminView from '@/views/admin.vue'
@@ -17,12 +17,13 @@ import doctorUpdateView from '@/views/updateDoctor.vue'
 import doctorEditView from '@/views/editDoctor.vue'
 
 import component from 'element-plus/es/components/tree-select/src/tree-select-option.mjs'
-import Layout from '@/views/DoctorLayout.vue'
+import Layout from '@/views/doctor/DoctorLayout.vue'
 import ArticleCategory from '@/views/article/ArticleCategory.vue'
 import ArticleManage from '@/views/article/ArticleManage.vue'
 import DoctorInfo from '@/views/doctor/DoctorInfo.vue'
 import AdminLayout from '@/views/admin/AdminLayout.vue'
 import DoctorRequire from '@/views/admin/DoctorRequire.vue'
+import DoctorDepartment from '@/views/admin/DoctorDepartment.vue'
 //import Person from '@/views/person.vue'
 
 
@@ -36,13 +37,14 @@ const route = [
     // { path: '/doctor/Info',component: doctorView},
     // { path: '/doctor/edit-doctor-info',component: doctorUpdateView},
     { path: '/doctor/home', component: Layout, children: [
-        { path: '/doctor/record', component: ArticleCategory},
-        { path: '/doctor/test', component: ArticleManage},
+        // { path: '/doctor/record', component: ArticleCategory},
+        // { path: '/doctor/test', component: ArticleManage},
         { path: '/doctor/personinfo', component: DoctorInfo}
     ]},
     //admin:
     { path: '/admin/home',component: AdminLayout, children: [
-        {path: '/admin/require', component: DoctorRequire}
+        {path: '/admin/require', component: DoctorRequire},
+        {path: '/admin/doctorInfo', component: DoctorDepartment}
     ]}
 
 

@@ -15,16 +15,16 @@ import {userInfoService} from '@/api/user.ts'
 import useUserInfoStore from '@/stores/userInfo.ts'
 import {useTokenStore} from '@/stores/token.ts'
 const tokenStore = useTokenStore();
-// const userInfoStore = useUserInfoStore();
-// //调用函数,获取用户详细信息
-// const getUserInfo = async()=>{
-//     //调用接口
-//     let result = await userInfoService();
-//     //数据存储到pinia中
-//     userInfoStore.setInfo(result.data);
-// }
+const userInfoStore = useUserInfoStore();
+//调用函数,获取用户详细信息
+const getUserInfo = async()=>{
+    //调用接口
+    let result = await userInfoService();
+    //数据存储到pinia中
+    userInfoStore.setInfo(result.data);
+}
 
-// getUserInfo();
+getUserInfo();
 //条目被点击后,调用的函数
 
 import useDoctorIndoStore from '@/stores/doctorInfo'
@@ -60,7 +60,7 @@ const handleCommand = (command)=>{
             //退出登录
             //1.清空pinia中存储的token以及个人信息
             tokenStore.removeToken()
-            userInfoStore.removeInfo()
+            // userInfoStore.removeInfo()
 
             //2.跳转到登录页面
             router.push('/doctor')
@@ -76,9 +76,6 @@ const handleCommand = (command)=>{
                 message: '用户取消了退出登录',
             })
         })
-    }else{
-        //路由
-        router.push('/doctor/'+command)
     }
 }
 </script>
@@ -117,12 +114,12 @@ const handleCommand = (command)=>{
                         </el-icon>
                         <span>基本资料</span>
                     </el-menu-item>
-                    <el-menu-item index="/user/avatar">
+                    <!-- <el-menu-item index="/user/avatar">
                         <el-icon>
                             <Crop />
                         </el-icon>
                         <span>更换头像</span>
-                    </el-menu-item>
+                    </el-menu-item> -->
                     <el-menu-item index="/user/resetPassword">
                         <el-icon>
                             <EditPen />

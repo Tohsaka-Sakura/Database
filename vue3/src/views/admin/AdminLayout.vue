@@ -48,10 +48,10 @@ const handleCommand = (command)=>{
             //退出登录
             //1.清空pinia中存储的token以及个人信息
             tokenStore.removeToken()
-            userInfoStore.removeInfo()
+            // userInfoStore.removeInfo()
 
             //2.跳转到登录页面
-            router.push('/doctor')
+            router.push('/admin')
             ElMessage({
                 type: 'success',
                 message: '退出登录成功',
@@ -64,9 +64,6 @@ const handleCommand = (command)=>{
                 message: '用户取消了退出登录',
             })
         })
-    }else{
-        //路由
-        router.push('/doctor/'+command)
     }
 }
 </script>
@@ -86,12 +83,12 @@ const handleCommand = (command)=>{
                     </el-icon>
                     <span>verfiy register</span>
                 </el-menu-item>
-                <!-- <el-menu-item index="/doctor/test">
+                <el-menu-item index="/admin/doctorInfo">
                     <el-icon>
                         <Promotion />
                     </el-icon>
-                    <span>文章管理</span>
-                </el-menu-item> -->
+                    <span>doctor info</span>
+                </el-menu-item>
                 <el-sub-menu >
                     <template #title>
                         <el-icon>
@@ -99,7 +96,7 @@ const handleCommand = (command)=>{
                         </el-icon>
                         <span>个人中心</span>
                     </template>
-                    <el-menu-item index="/doctor/personinfo">
+                    <!-- <el-menu-item index="/doctor/personinfo">
                         <el-icon>
                             <User />
                         </el-icon>
@@ -110,7 +107,7 @@ const handleCommand = (command)=>{
                             <Crop />
                         </el-icon>
                         <span>更换头像</span>
-                    </el-menu-item>
+                    </el-menu-item> -->
                     <el-menu-item index="/user/resetPassword">
                         <el-icon>
                             <EditPen />
@@ -136,9 +133,9 @@ const handleCommand = (command)=>{
                     </span>
                     <template #dropdown>
                         <el-dropdown-menu>
-                            <el-dropdown-item command = "personinfo":icon = "User">基本资料</el-dropdown-item>
-                            <el-dropdown-item command = "avatar":icon = "Crop">更换头像</el-dropdown-item>
-                            <el-dropdown-item command = "password":icon = "EditPen">重置密码</el-dropdown-item>
+                            <!-- <el-dropdown-item command = "personinfo":icon = "User">基本资料</el-dropdown-item> -->
+                            <!-- <el-dropdown-item command = "avatar":icon = "Crop">更换头像</el-dropdown-item>
+                            <el-dropdown-item command = "password":icon = "EditPen">重置密码</el-dropdown-item> -->
                             <el-dropdown-item command = "logout":icon = "SwitchButton">退出登录</el-dropdown-item>
                         </el-dropdown-menu>
                     </template>

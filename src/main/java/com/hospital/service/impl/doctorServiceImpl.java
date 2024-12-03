@@ -8,6 +8,8 @@ import com.hospital.utils.Md5Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 
 @Service
 public class doctorServiceImpl implements doctorService {
@@ -38,5 +40,10 @@ public class doctorServiceImpl implements doctorService {
     @Override
     public void updateDoctorInfo(Doctor doctor) {
         doctorMap.updateDoctorInfo(doctor);
+    }
+
+    @Override
+    public List<Doctor> getAllDoctor() {
+        return doctorMap.findAllDoctors();
     }
 }

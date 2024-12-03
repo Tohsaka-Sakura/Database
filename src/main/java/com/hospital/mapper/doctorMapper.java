@@ -9,6 +9,8 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
+import java.util.List;
+
 @Mapper
 public interface doctorMapper {
 
@@ -26,5 +28,6 @@ public interface doctorMapper {
     @Select("select * from doctorrequireregister where username = #{username}")
     Doctor findDoctorRegisterByUsername(String username);
 
-
+    @Select("SELECT * from doctor")
+    List<Doctor> findAllDoctors();
 }

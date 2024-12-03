@@ -18,6 +18,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -87,7 +88,7 @@ public class doctorController {
     }
 
     @GetMapping("/doctorInfo")
-    public Result<Doctor> doctorInfo(@RequestHeader(name = "Authorization") String token) {
+    public Result<Doctor> doctorInfo(@RequestHeader("Authorization") String token) {
         try {
             Map<String, Object> claims = JwtUtil.verifyToken(token);
             String username = (String) claims.get("username");
@@ -108,7 +109,7 @@ public class doctorController {
     public Result updateDoctorInfo(@RequestBody Doctor doctor) {
         try {
             service.updateDoctorInfo(doctor);
-            return Result.success();
+            return Result.success("success");
         } catch (Exception e) {
             return Result.error(e.getMessage());
         }
@@ -145,6 +146,11 @@ public class doctorController {
         } catch (Exception e) {
             return Result.error("添加病历失败");
         }
+    }
+
+    @GetMapping("/allDoctorInfo")
+    public Result allDoctorInfo() {
+        return Result.success(service.getAllDoctor());
     }
 
 }
