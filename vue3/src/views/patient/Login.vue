@@ -41,12 +41,12 @@ const rules={
     ]
 }
 
-import {userRegisterService,userLoginService} from '@/api/user.ts'
+import {patientRegisterService,patientLoginService} from '@/api/patient.ts'
 
 const register = async() =>{
 
 
-    let result = await userRegisterService(RegisterData.value);
+    let result = await patientRegisterService(RegisterData.value);
 
     
 
@@ -60,7 +60,7 @@ import {useTokenStore} from '@/stores/token'
 const tokenStore = useTokenStore()
 
 const login = async()=>{
-    let result = await userLoginService(RegisterData.value);
+    let result = await patientLoginService(RegisterData.value);
 
     
 

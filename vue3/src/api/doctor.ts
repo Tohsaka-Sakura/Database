@@ -9,6 +9,7 @@ export const doctorRegisterService = (registerData) => {
     return request.post('/doctor/register', params);
 };
 
+
 // 医生登录
 export const doctorLoginService = (loginData) => {
     const params = new URLSearchParams();

@@ -83,6 +83,12 @@ const handleCommand = (command)=>{
                     </el-icon>
                     <span>verfiy register</span>
                 </el-menu-item>
+                <el-menu-item index = "/admin/patientInfo">
+                    <el-icon>
+                        <UserFilled />
+                    </el-icon>
+                    <span>patient info</span>
+                </el-menu-item>
                 <el-menu-item index="/admin/doctorInfo">
                     <el-icon>
                         <Promotion />

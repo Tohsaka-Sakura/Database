@@ -4,10 +4,7 @@ package com.hospital.mapper;
 import com.hospital.pojo.Doctor;
 import com.hospital.pojo.Patient;
 import com.hospital.pojo.doctorrequestregister;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -30,4 +27,6 @@ public interface doctorMapper {
 
     @Select("SELECT * from doctor")
     List<Doctor> findAllDoctors();
+
+
 }

@@ -1,6 +1,7 @@
 package com.hospital.service;
 
 import com.hospital.pojo.Admin;
+import com.hospital.pojo.Patient;
 import com.hospital.pojo.doctorrequestregister;
 import jakarta.validation.constraints.Pattern;
 
@@ -19,4 +20,10 @@ public interface adminService {
     void deleteDoctorRegister(String username);
 
     void updateDoctorRegister(doctorrequestregister doctorregister);
+
+    void deleteDoctorByUsername(String username);
+
+    List<Patient> getAllPatient();
+
+    void deletePatientByUsername(String username);
 }

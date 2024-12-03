@@ -1,6 +1,7 @@
 package com.hospital.pojo;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import java.time.LocalDateTime;
@@ -12,6 +13,7 @@ public class Patient {
     private String name;
     private String gender;
     private String username;
+    @JsonIgnore
     private String password;
 
     private String contactNumber;

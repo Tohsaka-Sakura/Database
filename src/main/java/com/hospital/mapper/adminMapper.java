@@ -2,6 +2,7 @@ package com.hospital.mapper;
 
 
 import com.hospital.pojo.Admin;
+import com.hospital.pojo.Patient;
 import com.hospital.pojo.doctorrequestregister;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
@@ -32,5 +33,14 @@ public interface adminMapper {
 
     @Select("select * from doctorrequireregister where username = #{username}")
     doctorrequestregister findRequestByUsername(String username);
+
+    @Delete("DELETE FROM doctor where username=#{username}")
+    void deleteDoctorByUsername(String username);
+
+    @Select("SELECT * FROM patient")
+    List<Patient> findAllPatient();
+
+    @Delete("DELETE FROM patient where username = #{username}")
+    void deletePatientByUsername(String username);
 
 }

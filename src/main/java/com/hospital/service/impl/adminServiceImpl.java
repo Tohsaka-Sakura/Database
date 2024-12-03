@@ -2,6 +2,7 @@ package com.hospital.service.impl;
 
 import com.hospital.mapper.adminMapper;
 import com.hospital.pojo.Admin;
+import com.hospital.pojo.Patient;
 import com.hospital.pojo.doctorrequestregister;
 import com.hospital.service.adminService;
 import com.hospital.utils.Md5Util;
@@ -50,5 +51,20 @@ public class adminServiceImpl implements adminService {
         adminMap.register(username,md5Pwd);
 
 
+    }
+
+    @Override
+    public void deleteDoctorByUsername(String username) {
+        adminMap.deleteDoctorByUsername(username);
+    }
+
+    @Override
+    public List<Patient> getAllPatient() {
+        return adminMap.findAllPatient();
+    }
+
+    @Override
+    public void deletePatientByUsername(String username) {
+        adminMap.deletePatientByUsername(username);
     }
 }

@@ -25,6 +25,7 @@ import AdminLayout from '@/views/admin/AdminLayout.vue'
 import DoctorRequire from '@/views/admin/DoctorRequire.vue'
 import DoctorDepartment from '@/views/admin/DoctorDepartment.vue'
 import PatientLayout from '@/views/patient/PatientLayout.vue'
+import AllPatientInfo from '@/views/admin/AllPatientInfo.vue'
 //import Person from '@/views/person.vue'
 
 
@@ -45,7 +46,8 @@ const route = [
     //admin:
     { path: '/admin/home',component: AdminLayout, children: [
         {path: '/admin/require', component: DoctorRequire},
-        {path: '/admin/doctorInfo', component: DoctorDepartment}
+        {path: '/admin/doctorInfo', component: DoctorDepartment},
+        {path: '/admin/patientInfo',component: AllPatientInfo}
     ]},
     //patient::
     { path:'/patient/home',component:PatientLayout,children:[

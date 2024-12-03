@@ -46,4 +46,5 @@ public class doctorServiceImpl implements doctorService {
     public List<Doctor> getAllDoctor() {
         return doctorMap.findAllDoctors();
     }
+
 }

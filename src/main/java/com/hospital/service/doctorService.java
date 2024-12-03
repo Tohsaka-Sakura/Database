@@ -17,4 +17,6 @@ public interface doctorService {
     void updateDoctorInfo(Doctor doctor);
 
     List<Doctor> getAllDoctor();
+
+
 }

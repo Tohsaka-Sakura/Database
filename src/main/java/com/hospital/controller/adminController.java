@@ -2,9 +2,11 @@ package com.hospital.controller;
 
 
 import com.hospital.pojo.Admin;
+import com.hospital.pojo.Doctor;
 import com.hospital.pojo.Result;
 import com.hospital.pojo.doctorrequestregister;
 import com.hospital.service.adminService;
+import com.hospital.service.doctorService;
 import com.hospital.utils.JwtUtil;
 import com.hospital.utils.Md5Util;
 import jakarta.validation.constraints.Pattern;
@@ -22,6 +24,9 @@ public class adminController {
 
     @Autowired
     private adminService adminservice;
+
+    @Autowired
+    private doctorService service;
 
     @PostMapping("/register")
     public Result register(@Pattern(regexp = "^\\S{5,16}")String username,
@@ -104,5 +109,34 @@ public class adminController {
         }
     }
 
+    @PutMapping("/deleteDoctor")
+    public Result deleteDoctor(String username)
+    {
+        Doctor doctor = service.findDoctorByUsername(username);
+        if(doctor == null)
+        {
+            return Result.error("doctor not found");
+        }
+        else{
+            try {
+                adminservice.deleteDoctorByUsername(username);
+                return Result.success();
+            }
+            catch (Exception e) {
+                return Result.error(e.getMessage());
+            }
+        }
+    }
 
+
+    @GetMapping("/getAllPatient")
+    public Result getAllPatient(){
+        return Result.success(adminservice.getAllPatient());
+    }
+
+    @PutMapping("/deletePatient")
+    public Result deletePatient(String username){
+        adminservice.deletePatientByUsername(username);
+        return Result.success();
+    }
 }

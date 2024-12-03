@@ -15,18 +15,29 @@ const tokenStore = useTokenStore();
 import {getDoctorRequests} from '@/api/admin.ts';
 
 
-const doctorInfo=ref([
+// const doctorInfo=ref([
+
+// ])
+
+// import {getAllDoctorService} from '@/api/doctor.ts'
+
+// const doctorInfoList = async() =>{
+//     let result = await getAllDoctorService();
+//     doctorInfo.value = result.data;
+// }
+
+// doctorInfoList();
+
+import {getAllPatientService} from '@/api/admin.ts'
+const patientInfo = ref([
 
 ])
 
-import {getAllDoctorService} from '@/api/doctor.ts'
-
-const doctorInfoList = async() =>{
-    let result = await getAllDoctorService();
-    doctorInfo.value = result.data;
+const patientInfoList = async()=>{
+    let result = await getAllPatientService();
+    patientInfo.value = result.data;;
 }
-
-doctorInfoList();
+patientInfoList();
 
 //控制添加分类弹窗
 const dialogVisible = ref(false)
@@ -65,12 +76,18 @@ const dialogVisible = ref(false)
 const title = ref('')
 
 
-const doctorInfoModel = ref({
+// const doctorInfoModel = ref({
+//     username:"",
+//     name:"",
+//     phone:"",
+//     department:"",
+//     email:""
+// })
+
+const patientInfoModel = ref({
     username:"",
     name:"",
-    phone:"",
-    department:"",
-    email:""
+    
 })
 
 
@@ -143,15 +160,15 @@ const updateCategory = async () => {
 //         })
 // }
 import {ElMessageBox,ElMessage} from 'element-plus'
-import {deleteDoctorService} from '@/api/admin.ts'
+import {deletePatientService} from '@/api/admin.ts'
 
 
 
-const rejectRequire = (row) => {
+const deletePatient = (row) => {
     //提示用户  确认框
 
     ElMessageBox.confirm(
-        'Do you want to delete the doctor data?',
+        'Do you want to delete the patient data?',
         'reminder',
         {
             confirmButtonText: 'yes',
@@ -160,13 +177,13 @@ const rejectRequire = (row) => {
         }
     )
         .then(async() => {
-            let result = await deleteDoctorService(row.username);
+            let result = await deletePatientService(row.username);
             
             ElMessage({
                 type:'success',
                 message:'delete success',
             })
-            doctorInfoList();
+            patientInfoList();
 
         })
         .catch(() => {
@@ -181,23 +198,22 @@ const rejectRequire = (row) => {
     <el-card class="page-container">
         <template #header>
             <div class="header">
-                <span>doctor info</span>
+                <span>patient info</span>
                 <!-- <div class="extra">
                     <el-button type="primary" @click="dialogVisible = true; title = '添加分类'; clearData()">添加分类</el-button>
                 </div> -->
             </div>
         </template>
-        <el-table :data="doctorInfo" style="width: 100%">
+        <el-table :data="patientInfo" style="width: 100%">
             <el-table-column label="username" prop="username"></el-table-column>
-            <el-table-column label="doctor name" prop="name"> </el-table-column>
-            <el-table-column label="phone" prop="phone"> </el-table-column>
-            <el-table-column label="department" prop="department"> </el-table-column>
-            <el-table-column label="email" prop="email"></el-table-column>
+            <el-table-column label="patient name" prop="name"> </el-table-column>
+            <el-table-column label="contactNumber" prop="contactNumber"> </el-table-column>
+            <el-table-column label="gender" prop="gender"> </el-table-column>
             <!-- <el-table-column label="分类别名" prop="categoryAlias"></el-table-column> -->
             <el-table-column label="operation" width="100">
                 <template #default="{ row }">
                     <el-button :icon="Edit" circle plain type="primary" @click="showDialog(row)"></el-button>
-                    <el-button :icon="Delete" circle plain type="danger" @click="rejectRequire(row)"></el-button>
+                    <el-button :icon="Delete" circle plain type="danger" @click="deletePatient(row)"></el-button>
                 </template>
             </el-table-column>
             <template #empty>
