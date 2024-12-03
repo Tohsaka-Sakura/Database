@@ -110,7 +110,7 @@ public class doctorController {
             service.updateDoctorInfo(doctor);
             return Result.success();
         } catch (Exception e) {
-            return Result.error("Update failed");
+            return Result.error(e.getMessage());
         }
     }
 

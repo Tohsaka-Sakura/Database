@@ -20,7 +20,7 @@ public interface doctorMapper {
     " values(#{username},#{password})")
     void register(String username, String password);
 
-    @Update("UPDATE patient SET name = #{name}, department = #{department}, phone = #{phone}, email = #{email} WHERE username = #{username}")
+    @Update("UPDATE doctor SET name = #{name}, department = #{department}, phone = #{phone}, email = #{email} WHERE username = #{username}")
     void updateDoctorInfo(Doctor doctor);
 
     @Select("select * from doctorrequireregister where username = #{username}")

@@ -1,9 +1,12 @@
 <script setup>
 import { ref } from 'vue'
-import useUserInfoStore from '@/stores/userInfo.ts'
-const userInfoStore = useUserInfoStore();
 
-const userInfo = ref({...userInfoStore.info})
+
+import useDoctorIndoStore from '@/stores/doctorInfo.ts'
+const doctorInfoStore = useDoctorIndoStore();
+
+const doctorInfo = ref({...doctorInfoStore.info})
+
 const rules = {
     nickname: [
         { required: true, message: '请输入用户昵称', trigger: 'blur' },
@@ -30,6 +33,15 @@ const updateUserInfo = async ()=>{
     //修改pinia中的个人信息
     userInfoStore.setInfo(userInfo.value)
 }
+
+import {updateDoctorService} from '@/api/doctor.ts'
+
+const updateDoctorInfo = async () => {
+    let result = await updateDoctorService(doctorInfo.value);
+    ElMessage.success(result.message?result.message: " sucess");
+
+    doctorInfoStore.setInfo(doctorInfo.value)
+}
 </script>
 <template>
     <el-card class="page-container">
@@ -40,18 +52,24 @@ const updateUserInfo = async ()=>{
         </template>
         <el-row>
             <el-col :span="12">
-                <el-form :model="userInfo" :rules="rules" label-width="100px" size="large">
+                <el-form :model="doctorInfo" :rules="rules" label-width="100px" size="large">
                     <el-form-item label="登录名称">
-                        <el-input v-model="userInfo.username" disabled></el-input>
+                        <el-input v-model="doctorInfo.username" disabled></el-input>
                     </el-form-item>
-                    <el-form-item label="用户昵称" prop="nickname">
-                        <el-input v-model="userInfo.nickname"></el-input>
+                    <el-form-item label="医生名字" prop="nickname">
+                        <el-input v-model="doctorInfo.name"></el-input>
                     </el-form-item>
                     <el-form-item label="用户邮箱" prop="email">
-                        <el-input v-model="userInfo.email"></el-input>
+                        <el-input v-model="doctorInfo.email"></el-input>
                     </el-form-item>
+                    <el-form-item label = "联系电话">
+                        <el-input v-model = "doctorInfo.phone" ></el-input>
+                    </el-form-item>
+                    <!-- <el-form-item label = "医生部门">
+                        <el-input v-model = "doctorInfo.department" disabled></el-input>
+                    </el-form-item> -->
                     <el-form-item>
-                        <el-button type="primary" @click="updateUserInfo">提交修改</el-button>
+                        <el-button type="primary" @click="updateDoctorInfo">提交修改</el-button>
                     </el-form-item>
                 </el-form>
             </el-col>

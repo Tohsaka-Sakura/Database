@@ -20,7 +20,7 @@ import component from 'element-plus/es/components/tree-select/src/tree-select-op
 import Layout from '@/views/DoctorLayout.vue'
 import ArticleCategory from '@/views/article/ArticleCategory.vue'
 import ArticleManage from '@/views/article/ArticleManage.vue'
-import UserInfo from '@/views/doctor/UserInfo.vue'
+import DoctorInfo from '@/views/doctor/DoctorInfo.vue'
 //import Person from '@/views/person.vue'
 
 
@@ -30,17 +30,17 @@ const route = [
     { path: '/doctor',component: doctorLoginView},
     { path: '/admin', component: adminLoginView},
     { path: '/patient', component: patientView},
-    { path: '/patient/edit-patient-info', component: updateView },
-    { path: '/doctor/Info',component: doctorView},
-    { path: '/doctor/edit-doctor-info',component: doctorUpdateView},
+    // { path: '/patient/edit-patient-info', component: updateView },
+    // { path: '/doctor/Info',component: doctorView},
+    // { path: '/doctor/edit-doctor-info',component: doctorUpdateView},
     { path: '/doctor/home', component: Layout, children: [
         { path: '/doctor/record', component: ArticleCategory},
         { path: '/doctor/test', component: ArticleManage},
-        { path: '/doctor/personinfo', component:UserInfo}
+        { path: '/doctor/personinfo', component: DoctorInfo}
     ]},
-    { path: '/doctor/add-info',component: doctorEditView},
-    { path: '/doctor/home', component: Layout},
-    { path: '/admin/request', component: adminView}
+    // { path: '/doctor/add-info',component: doctorEditView},
+    // //{ path: '/doctor/home', component: Layout},
+    // { path: '/admin/request', component: adminView}
 ]
 
 const router = createRouter({

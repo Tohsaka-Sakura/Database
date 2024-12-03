@@ -15,17 +15,31 @@ import {userInfoService} from '@/api/user.ts'
 import useUserInfoStore from '@/stores/userInfo.ts'
 import {useTokenStore} from '@/stores/token.ts'
 const tokenStore = useTokenStore();
-const userInfoStore = useUserInfoStore();
-//调用函数,获取用户详细信息
-const getUserInfo = async()=>{
-    //调用接口
-    let result = await userInfoService();
-    //数据存储到pinia中
-    userInfoStore.setInfo(result.data);
+// const userInfoStore = useUserInfoStore();
+// //调用函数,获取用户详细信息
+// const getUserInfo = async()=>{
+//     //调用接口
+//     let result = await userInfoService();
+//     //数据存储到pinia中
+//     userInfoStore.setInfo(result.data);
+// }
+
+// getUserInfo();
+//条目被点击后,调用的函数
+
+import useDoctorIndoStore from '@/stores/doctorInfo'
+import { getDoctorService } from '@/api/doctor'
+const DoctorInfoStore = useDoctorIndoStore();
+
+const getDoctorInfo = async()=>{
+    let result = await getDoctorService();
+
+    DoctorInfoStore.setInfo(result.data);
 }
 
-getUserInfo();
-//条目被点击后,调用的函数
+getDoctorInfo();
+
+
 import {useRouter} from 'vue-router'
 const router = useRouter();
 import {ElMessage,ElMessageBox} from 'element-plus'
@@ -122,7 +136,7 @@ const handleCommand = (command)=>{
         <el-container style="flex:1;display: flex; flex-direction: column; height: 100vh;">
             <!-- 头部区域 -->
             <el-header >
-                <div>Doctor:</div>
+                <div>Doctor:<strong>{{ DoctorInfoStore.info.username }}</strong></div>
                 <!-- 下拉菜单 -->
                 <!-- command: 条目被点击后会触发,在事件函数上可以声明一个参数,接收条目对应的指令 -->
                 <el-dropdown placement="bottom-end" @command="handleCommand">
