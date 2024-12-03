@@ -27,18 +27,6 @@ const tokenStore = useTokenStore();
 // getUserInfo();
 //条目被点击后,调用的函数
 
-import useDoctorIndoStore from '@/stores/doctorInfo'
-import { getDoctorService } from '@/api/doctor'
-const DoctorInfoStore = useDoctorIndoStore();
-
-const getDoctorInfo = async()=>{
-    let result = await getDoctorService();
-
-    DoctorInfoStore.setInfo(result.data);
-}
-
-getDoctorInfo();
-
 
 import {useRouter} from 'vue-router'
 const router = useRouter();
@@ -92,18 +80,18 @@ const handleCommand = (command)=>{
             <!-- element-plus的菜单标签 -->
             <el-menu active-text-color="#ffd04b" background-color="#232323"  text-color="#fff"
                 router>
-                <el-menu-item index="/doctor/record">
+                <el-menu-item index="/admin/require">
                     <el-icon>
                         <Management />
                     </el-icon>
-                    <span>文章分类</span>
+                    <span>verfiy register</span>
                 </el-menu-item>
-                <el-menu-item index="/doctor/test">
+                <!-- <el-menu-item index="/doctor/test">
                     <el-icon>
                         <Promotion />
                     </el-icon>
                     <span>文章管理</span>
-                </el-menu-item>
+                </el-menu-item> -->
                 <el-sub-menu >
                     <template #title>
                         <el-icon>
@@ -136,7 +124,7 @@ const handleCommand = (command)=>{
         <el-container style="flex:1;display: flex; flex-direction: column; height: 100vh;">
             <!-- 头部区域 -->
             <el-header >
-                <div>Doctor:<strong>{{ DoctorInfoStore.info.username }}</strong></div>
+                <div>Admin</div>
                 <!-- 下拉菜单 -->
                 <!-- command: 条目被点击后会触发,在事件函数上可以声明一个参数,接收条目对应的指令 -->
                 <el-dropdown placement="bottom-end" @command="handleCommand">

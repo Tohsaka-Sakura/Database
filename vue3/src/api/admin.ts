@@ -16,5 +16,13 @@ export const approveDoctorRequest = (username) => {
 export const rejectDoctorRequest = (username) => {
   const params = new URLSearchParams();
   params.append('username', username);
-  return request.delete('/admin/reject', { data: params });
+  return request.put('/admin/reject',params);
 };
+
+export const adminLogin = (loginData) =>{
+  const params = new URLSearchParams();
+  for(let key in loginData){
+    params.append(key,loginData[key]);
+  }
+  return request.post('admin/login',params);
+}

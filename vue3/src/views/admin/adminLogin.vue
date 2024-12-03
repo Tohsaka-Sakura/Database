@@ -42,17 +42,7 @@ const rules={
     ]
 }
 
-import {doctorRegisterService,doctorLoginService} from '@/api/doctor.ts'
 
-const register = async() =>{
-
-
-    let result = await doctorRegisterService(RegisterData.value);
-
-    
-
-    ElMessage.success(result.message ? result.message:'register success')
-}
 
 const router = useRouter()
 
@@ -60,8 +50,11 @@ import {useTokenStore} from '@/stores/token'
 
 const tokenStore = useTokenStore()
 
+
+import {userLoginService} from '@/api/user.ts'
+
 const login = async()=>{
-    let result = await doctorLoginService(RegisterData.value);
+    let result = await userLoginService(RegisterData.value);
 
     
 
@@ -69,7 +62,7 @@ const login = async()=>{
 
     tokenStore.setToken(result.data)
 
-    router.push('/admin/request')
+    router.push('/admin/home')
 
 }
 

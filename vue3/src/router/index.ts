@@ -5,7 +5,7 @@ import LoginView from '@/views/Login.vue'
 import LayoutView from '@/views/DoctorLayout.vue'
 
 import doctorLoginView from '@/views/doctorLogin.vue'
-import adminLoginView from '@/views/adminLogin.vue'
+import adminLoginView from '@/views/admin/adminLogin.vue'
 
 import adminView from '@/views/admin.vue'
 
@@ -21,6 +21,8 @@ import Layout from '@/views/DoctorLayout.vue'
 import ArticleCategory from '@/views/article/ArticleCategory.vue'
 import ArticleManage from '@/views/article/ArticleManage.vue'
 import DoctorInfo from '@/views/doctor/DoctorInfo.vue'
+import AdminLayout from '@/views/admin/AdminLayout.vue'
+import DoctorRequire from '@/views/admin/DoctorRequire.vue'
 //import Person from '@/views/person.vue'
 
 
@@ -38,6 +40,17 @@ const route = [
         { path: '/doctor/test', component: ArticleManage},
         { path: '/doctor/personinfo', component: DoctorInfo}
     ]},
+    //admin:
+    { path: '/admin/home',component: AdminLayout, children: [
+        {path: '/admin/require', component: DoctorRequire}
+    ]}
+
+
+
+    ///
+
+
+
     // { path: '/doctor/add-info',component: doctorEditView},
     // //{ path: '/doctor/home', component: Layout},
     // { path: '/admin/request', component: adminView}

@@ -16,8 +16,8 @@ public interface doctorMapper {
     @Select("select * from doctor where username =#{username}")
     Doctor findDoctorByUsername(String username);
 
-    @Insert("insert into doctorrequireregister(username,password) " +
-    " values(#{username},#{password})")
+    @Insert("insert into doctorrequireregister(username,password,require_time) " +
+    " values(#{username},#{password},now())")
     void register(String username, String password);
 
     @Update("UPDATE doctor SET name = #{name}, department = #{department}, phone = #{phone}, email = #{email} WHERE username = #{username}")

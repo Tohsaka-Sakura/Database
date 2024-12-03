@@ -70,11 +70,11 @@ public class adminController {
         return Result.success(adminservice.getRegister());
     }
 
-    @GetMapping("/reject")
-    public Result rejectRequest(@RequestParam String username) {
+    @PutMapping("/reject")
+    public Result rejectRequest(String username) {
         try {
-            doctorrequestregister doctorrequestregister = adminservice.getDoctorRegister(username);
-            if (doctorrequestregister == null) {
+            doctorrequestregister doctorregister = adminservice.getDoctorRegister(username);
+            if (doctorregister == null) {
                 return Result.error("Doctor request not found");
             }
             adminservice.deleteDoctorRegister(username);
@@ -86,15 +86,15 @@ public class adminController {
 
     @PutMapping("/verfiry")
     public Result verifier(String username){
-        doctorrequestregister doctorrequestregister = new doctorrequestregister();
-        doctorrequestregister = adminservice.getDoctorRegister(username);
-        if(doctorrequestregister == null){
+        doctorrequestregister doctorregister = new doctorrequestregister();
+        doctorregister = adminservice.getDoctorRegister(username);
+        if(doctorregister == null){
             return Result.error("get doctor request register error");
         }
         else {
             try {
                 adminservice.deleteDoctorRegister(username);
-                adminservice.updateDoctorRegister(doctorrequestregister);
+                adminservice.updateDoctorRegister(doctorregister);
                 return Result.success("register success");
             }
             catch (Exception e) {
