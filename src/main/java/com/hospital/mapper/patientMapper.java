@@ -23,7 +23,7 @@ public interface patientMapper {
     @Update("UPDATE patient SET name = #{name}, gender = #{gender}, contact_number = #{contactNumber}, update_time = now() WHERE username = #{username}")
     void updatePatientInfo(Patient patient);
 
-    @Select("select * from record where patientID =#{username}")
-    Record findRecord(String username);
+    @Select("select * from record where patientID =#{ID}")
+    Record findRecord(Integer ID);
 
 }

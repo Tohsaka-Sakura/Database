@@ -12,6 +12,6 @@ import java.util.List;
 @Mapper
 public interface nurseMapper {
 
-    @Insert("INSERT INTO nurses(name, room, department) VALUES(#{name}, #{room}, #{department})")
+    @Insert("INSERT INTO nurse(name,AssignedRoom, department) VALUES(#{name}, #{room}, #{department})")
     void addNurse(Nurse nurse);
 }

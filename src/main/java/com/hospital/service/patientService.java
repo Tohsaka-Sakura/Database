@@ -14,5 +14,5 @@ public interface patientService {
 
     void updatePatientInfo(Patient patient);
 
-    Record findRecordByUsername(String username);
+    Record findRecordByUsername(Integer ID);
 }

@@ -1,3 +1,11 @@
+CREATE TABLE `Record` (
+    `patientId` VARCHAR(255) NOT NULL,
+    `time` DATETIME NOT NULL,
+    `department` VARCHAR(255),
+    `notes` TEXT,
+    PRIMARY KEY (`patientId`, `time`)
+);
+
 
 CREATE TABLE IF NOT EXISTS Nurse (
         NurseID INT AUTO_INCREMENT PRIMARY KEY,
@@ -8,7 +16,7 @@ CREATE TABLE IF NOT EXISTS Nurse (
 
 CREATE TABLE IF NOT EXISTS Room (
         RoomID INT AUTO_INCREMENT PRIMARY KEY,
-        Type VARCHAR(100),
+        Type VARCHAR(100)
 );
 
 CREATE TABLE IF NOT EXISTS Record (
@@ -17,14 +25,12 @@ CREATE TABLE IF NOT EXISTS Record (
         DoctorID INT,
         NurseID INT,
         Department VARCHAR(50),
-        notes TEXT,
-        time DATETIME NOT NULL
-        FOREIGN KEY (PatientID) REFERENCES Patients(PatientID),
-        FOREIGN KEY (DoctorID) REFERENCES Doctors(DoctorID),
-        FOREIGN KEY (NurseID) REFERENCES Nurses(NurseID)
-)
+        notes TEXT
+);
 
 CREATE TABLE IF NOT EXISTS doctorrequireregister (
         username VARCHAR(50),
-        password VARCHAR(50),
+        password VARCHAR(50)
 );
+
+DROP TABLE Record

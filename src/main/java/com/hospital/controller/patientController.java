@@ -89,14 +89,14 @@ public class patientController {
     public Result<Record> patientRecord(@RequestHeader(name = "Authorization") String token) {
         try {
             Map<String, Object> claims = JwtUtil.verifyToken(token);
-            String username = (String) claims.get("username");
-            Record record = pService.findRecordByUsername(username);
+            Integer id = (Integer) claims.get("id");
+            Record record = pService.findRecordByUsername(id);
             if (record != null) {
                 return Result.success(record);
                 //return Result.error(patient.getUsername());
             } else {
                 //return Result.error(username);
-                return Result.error("Record not found: user "+username);
+                return Result.error("Record not found: user "+id);
             }
         } catch (Exception e) {
             return Result.error("Invalid token");

@@ -10,8 +10,8 @@
       <h2>添加护士</h2>
       <form @submit.prevent="addNurse">
         <input v-model="nurse.name" placeholder="护士姓名" required />
-        <input v-model="nurse.room" type="number" placeholder="房间号" required />
         <input v-model="nurse.department" placeholder="科室" required />
+        <input v-model="nurse.room" type="number" placeholder="房间编号" required />
         <button type="submit">添加护士</button>
       </form>
       <p v-if="nurseMessage">{{ nurseMessage }}</p>
@@ -19,10 +19,10 @@
     </div>
 
     <div v-if="isRoomModalVisible">
-      <h2>添加科室</h2>
+      <h2>添加房间</h2>
       <form @submit.prevent="addRoom">
-        <input v-model="room.Type" placeholder="科室类型" required />
-        <button type="submit">添加科室</button>
+        <input v-model="room.Type" placeholder="房间类型" required />
+        <button type="submit">添加房间</button>
       </form>
       <p v-if="roomMessage">{{ roomMessage }}</p>
       <button @click="closeRoomModal">关闭</button>
@@ -34,7 +34,6 @@
         <input v-model="newRecord.PId" type="number" placeholder="患者ID" required />
         <input v-model="newRecord.DId" type="number" placeholder="医生ID" required />
         <input v-model="newRecord.NId" type="number" placeholder="护士ID" required />
-        <input v-model="newRecord.time" type="datetime-local" required />
         <input v-model="newRecord.department" placeholder="科室" required />
         <textarea v-model="newRecord.notes" placeholder="病历备注" required></textarea>
         <button type="submit">添加病历</button>
@@ -53,7 +52,7 @@ import { addMedicalRecordService, addNurseService, addRoomService } from '@/api/
 // 响应式数据
 const nurse = ref({ name: '', room: null, department: '' });
 const room = ref({ Type: '' });
-const newRecord = ref({ PId: null, NId: null, DId: null, time: null, department: '', notes: '' });
+const newRecord = ref({ PId: null, NId: null, DId: null, department: '', notes: '' });
 
 const nurseMessage = ref('');
 const roomMessage = ref('');
@@ -122,7 +121,7 @@ const addMedicalRecord = async () => {
   try {
     await addMedicalRecordService(newRecord.value);
     recordMessage.value = '病历添加成功';
-    closeRecordModal();  // 关闭模态框
+    closeRecordModal();  
   } catch (error) {
     recordMessage.value = '病历添加失败';
     console.error('Error adding medical record:', error);
