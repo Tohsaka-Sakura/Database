@@ -68,7 +68,7 @@ const login = async()=>{
 
     tokenStore.setToken(result.data)
 
-    router.push('/patient')
+    router.push('/patient/home')
 
 }
 

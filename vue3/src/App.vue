@@ -1,7 +1,7 @@
 
 
 <script setup>
-  import LoginView from '@/views/Login.vue'
+  import LoginView from '@/views/patient/Login.vue'
   import LayoutView from '@/views/doctor/DoctorLayout.vue'; 
   
 

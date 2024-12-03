@@ -43,7 +43,7 @@ doctorRequrieList();
 
 
 //控制添加分类弹窗
-const dialogVisible = ref(false)
+// const dialogVisible = ref(false)
 
 
 
@@ -78,35 +78,29 @@ const dialogVisible = ref(false)
 //定义变量,控制标题的展示
 const title = ref('')
 
-
-// const showDialog = (row) =>{
-
+// //展示编辑弹窗
+// const showDialog = (row) => {
+//     dialogVisible.value = true; title.value = '编辑分类'
+//     //数据拷贝
+//     categoryModel.value.categoryName = row.categoryName;
+//     categoryModel.value.categoryAlias = row.categoryAlias;
+//     //扩展id属性,将来需要传递给后台,完成分类的修改
+//     categoryModel.value.id = row.id
 // }
 
-
-//展示编辑弹窗
-const showDialog = (row) => {
-    dialogVisible.value = true; title.value = '编辑分类'
-    //数据拷贝
-    categoryModel.value.categoryName = row.categoryName;
-    categoryModel.value.categoryAlias = row.categoryAlias;
-    //扩展id属性,将来需要传递给后台,完成分类的修改
-    categoryModel.value.id = row.id
-}
-
 //编辑分类
-const updateCategory = async () => {
-    //调用接口
-    let result = await articleCategoryUpdateService(categoryModel.value);
+// const updateCategory = async () => {
+//     //调用接口
+//     let result = await articleCategoryUpdateService(categoryModel.value);
 
-    ElMessage.success(result.msg ? result.msg : '修改成功')
+//     ElMessage.success(result.msg ? result.msg : '修改成功')
 
-    //调用获取所有分类的函数
-    articleCategoryList();
+//     //调用获取所有分类的函数
+//     articleCategoryList();
 
-    //隐藏弹窗
-    dialogVisible.value = false;
-}
+//     //隐藏弹窗
+//     dialogVisible.value = false;
+// }
 
 // //清空模型的数据
 // const clearData = () => {
@@ -208,7 +202,7 @@ const rejectRequire = (row) => {
             <!-- <el-table-column label="分类别名" prop="categoryAlias"></el-table-column> -->
             <el-table-column label="operation" width="100">
                 <template #default="{ row }">
-                    <el-button :icon="Edit" circle plain type="primary" @click="showDialog(row)"></el-button>
+                    <el-button :icon="Edit" circle plain type="primary" @click="allowRequire(row)"></el-button>
                     <el-button :icon="Delete" circle plain type="danger" @click="rejectRequire(row)"></el-button>
                 </template>
             </el-table-column>
@@ -229,8 +223,8 @@ const rejectRequire = (row) => {
             </el-form>
             <template #footer>
                 <span class="dialog-footer">
-                    <el-button @click="dialogVisible = false">取消</el-button>
-                    <el-button type="primary" @click="title == '添加分类' ? addCategory() : updateCategory()"> 确认 </el-button>
+                    <!-- <el-button @click="dialogVisible = false">取消</el-button>
+                    <el-button type="primary" @click="title == '添加分类' ? addCategory() : updateCategory()"> 确认 </el-button> -->
                 </span>
             </template>
         </el-dialog>

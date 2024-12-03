@@ -27,17 +27,28 @@ const tokenStore = useTokenStore();
 // getUserInfo();
 //条目被点击后,调用的函数
 
-import useDoctorIndoStore from '@/stores/doctorInfo'
-import { getDoctorService } from '@/api/doctor'
-const DoctorInfoStore = useDoctorIndoStore();
+// import useDoctorIndoStore from '@/stores/doctorInfo'
+// import { getDoctorService } from '@/api/doctor'
+// const DoctorInfoStore = useDoctorIndoStore();
 
-const getDoctorInfo = async()=>{
-    let result = await getDoctorService();
+// const getDoctorInfo = async()=>{
+//     let result = await getDoctorService();
 
-    DoctorInfoStore.setInfo(result.data);
+//     DoctorInfoStore.setInfo(result.data);
+// }
+
+// getDoctorInfo();
+
+import  usePatientInfoStore from '@/stores/patient.ts'
+import { patientInfoService } from '@/api/patient.ts'
+const PatientinfoStore = usePatientInfoStore();
+
+const getPatientInfo = async()=>{
+    let  result = patientInfoService();
+
+    PatientinfoStore.setInfo(result.data);
 }
-
-getDoctorInfo();
+getPatientInfo();
 
 
 import {useRouter} from 'vue-router'
@@ -60,10 +71,10 @@ const handleCommand = (command)=>{
             //退出登录
             //1.清空pinia中存储的token以及个人信息
             tokenStore.removeToken()
-            userInfoStore.removeInfo()
+            // userInfoStore.removeInfo()
 
             //2.跳转到登录页面
-            router.push('/doctor')
+            router.push('/')
             ElMessage({
                 type: 'success',
                 message: '退出登录成功',
@@ -78,7 +89,7 @@ const handleCommand = (command)=>{
         })
     }else{
         //路由
-        router.push('/doctor/'+command)
+        router.push('/patient/'+command)
     }
 }
 </script>
@@ -92,17 +103,17 @@ const handleCommand = (command)=>{
             <!-- element-plus的菜单标签 -->
             <el-menu active-text-color="#ffd04b" background-color="#232323"  text-color="#fff"
                 router>
-                <el-menu-item index="/doctor/record">
+                <el-menu-item index="/patient/record">
                     <el-icon>
                         <Management />
                     </el-icon>
-                    <span>文章分类</span>
+                    <span>record history</span>
                 </el-menu-item>
-                <el-menu-item index="/doctor/test">
+                <el-menu-item index="/patient/test">
                     <el-icon>
                         <Promotion />
                     </el-icon>
-                    <span>文章管理</span>
+                    <span>record</span>
                 </el-menu-item>
                 <el-sub-menu >
                     <template #title>
@@ -111,18 +122,18 @@ const handleCommand = (command)=>{
                         </el-icon>
                         <span>个人中心</span>
                     </template>
-                    <el-menu-item index="/doctor/personinfo">
+                    <el-menu-item index="/patient/personinfo">
                         <el-icon>
                             <User />
                         </el-icon>
                         <span>基本资料</span>
                     </el-menu-item>
-                    <el-menu-item index="/user/avatar">
+                    <!-- <el-menu-item index="/user/avatar">
                         <el-icon>
                             <Crop />
                         </el-icon>
                         <span>更换头像</span>
-                    </el-menu-item>
+                    </el-menu-item> -->
                     <el-menu-item index="/user/resetPassword">
                         <el-icon>
                             <EditPen />
@@ -136,7 +147,7 @@ const handleCommand = (command)=>{
         <el-container style="flex:1;display: flex; flex-direction: column; height: 100vh;">
             <!-- 头部区域 -->
             <el-header >
-                <div>Doctor:<strong>{{ DoctorInfoStore.info.username }}</strong></div>
+                <div>Doctor:<strong>{{ PatientinfoStore.info.username }}</strong></div>
                 <!-- 下拉菜单 -->
                 <!-- command: 条目被点击后会触发,在事件函数上可以声明一个参数,接收条目对应的指令 -->
                 <el-dropdown placement="bottom-end" @command="handleCommand">
