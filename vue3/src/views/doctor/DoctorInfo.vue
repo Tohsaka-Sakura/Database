@@ -65,9 +65,9 @@ const updateDoctorInfo = async () => {
                     <el-form-item label = "联系电话">
                         <el-input v-model = "doctorInfo.phone" ></el-input>
                     </el-form-item>
-                    <!-- <el-form-item label = "医生部门">
+                    <el-form-item label = "医生部门">
                         <el-input v-model = "doctorInfo.department" disabled></el-input>
-                    </el-form-item> -->
+                    </el-form-item>
                     <el-form-item>
                         <el-button type="primary" @click="updateDoctorInfo">提交修改</el-button>
                     </el-form-item>
